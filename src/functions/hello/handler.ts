@@ -11,6 +11,6 @@ const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) =
     message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
     event,
   });
-}
+};
 
 export const main = middyfy(hello);

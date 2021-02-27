@@ -4,6 +4,8 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
+    "lint": "eslint . --ext js,ts --cache --fix",
+    "prettier": "prettier --list-different './**/*.{js,ts}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -18,7 +20,13 @@
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
     "@types/node": "^14.14.25",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "json-schema-to-ts": "^1.5.0",
+    "prettier": "^2.2.1",
     "serverless": "^2.23.0",
     "serverless-webpack": "^5.3.5",
     "ts-loader": "^8.0.15",
@@ -30,5 +38,53 @@
     "webpack-node-externals": "^2.5.2"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT"
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "env": {
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "settings": {
+      "import/parsers": {
+        "@typescript-eslint/parser": [
+          ".ts",
+          ".tsx"
+        ]
+      },
+      "import/resolver": {
+        "typescript": {}
+      }
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "tsconfigRootDir": "./",
+      "sourceType": "module",
+      "ecmaVersion": 2019
+    },
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off"
+    },
+    "ignorePatterns": [
+      "node_modules",
+      ".serverless",
+      ".vscode",
+      "*.config.js",
+      ".webpack",
+      "**/*.js"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
 }
