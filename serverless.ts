@@ -3,7 +3,7 @@ import type { AWS } from '@serverless/typescript';
 import hello from '@functions/hello';
 
 const serverlessConfiguration: AWS = {
-  service: 'backend',
+  service: 'backend-antagning',
   frameworkVersion: '2',
   custom: {
     webpack: {
