@@ -11,10 +11,10 @@ const serverlessConfiguration: AWS = {
       includeModules: true,
     },
   },
-  plugins: ['serverless-webpack'],
+  plugins: ['serverless-webpack', 'serverless-offline'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs12.x',
     region: 'eu-north-1',
     apiGateway: {
       minimumCompressionSize: 1024,
