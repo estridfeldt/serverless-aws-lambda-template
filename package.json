@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint . --ext js,ts --cache --fix",
     "prettier": "prettier --list-different './**/*.{js,ts}'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "e2e": "jest --config=e2e/jest.config.js"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -19,17 +20,20 @@
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.25",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
     "json-schema-to-ts": "^1.5.0",
     "prettier": "^2.2.1",
     "serverless": "^2.23.0",
     "serverless-offline": "^6.8.0",
     "serverless-webpack": "^5.3.5",
+    "ts-jest": "^26.5.3",
     "ts-loader": "^8.0.15",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
@@ -87,5 +91,14 @@
     "printWidth": 120,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "jest": {
+    "clearMocks": true,
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "setupFiles": []
   }
 }
