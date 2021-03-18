@@ -7,7 +7,8 @@
     "lint": "eslint . --ext js,ts --cache --fix",
     "prettier": "prettier --list-different './**/*.{js,ts}'",
     "test": "jest",
-    "e2e": "jest --config=e2e/jest.config.js"
+    "e2e": "jest --config=e2e/jest.config.js",
+    "full-e2e": "STACK=backend-antagning-integration yarn sls deploy -s integration && yarn e2e && yarn sls remove -s integration"
   },
   "engines": {
     "node": ">=14.15.0"

@@ -23,7 +23,7 @@ const postHello = (endpoint: string) =>
 
 describe('test', () => {
   it('should test e2e', () => {
-    return apiEndpoint('backend-antagning-dev').then((endpoint) => {
+    return apiEndpoint(process.env.STACK).then((endpoint) => {
       return postHello(endpoint).then((response) => {
         expect(response.message).toEqual('Hello Test, welcome to the exciting Serverless world!');
       });
