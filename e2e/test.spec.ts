@@ -1,9 +1,11 @@
 import AWS from 'aws-sdk';
 import axios from 'axios';
 
+const region = 'eu-north-1';
+
 const cloudformation = new AWS.CloudFormation({
   apiVersion: '2010-05-15',
-  region: 'eu-north-1',
+  region,
 });
 
 const apiEndpoint = (stackName: string): Promise<string> => {
