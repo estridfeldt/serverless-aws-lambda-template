@@ -8,17 +8,18 @@ const cloudformation = new AWS.CloudFormation({
   region,
 });
 
-const apiEndpoint = (stackName: string): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    cloudformation.describeStacks({ StackName: stackName }, function (err, data) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data.Stacks[0].Outputs.filter((output) => output.OutputKey === 'ServiceEndpoint')[0].OutputValue);
-      }
-    });
-  });
-};
+const apiEndpoint = (stackName: string): Promise<string> =>
+  cloudformation
+    .describeStacks({ StackName: stackName })
+    .promise()
+    .then((data) =>
+      data.Stacks.length === 1 ? data.Stacks[0] : Promise.reject(new Error(`No such stack ${stackName}`)),
+    )
+    .then((stack) => stack.Outputs.filter((output) => output.OutputKey === 'ServiceEndpoint'))
+    .then((serviceEndpoints) =>
+      serviceEndpoints.length === 1 ? serviceEndpoints[0] : Promise.reject(new Error('No serviceEndpoint')),
+    )
+    .then((serviceEndpoint) => serviceEndpoint.OutputValue);
 
 const postHello = (endpoint: string) =>
   axios.post(`${endpoint}/hello`, { name: 'Test' }).then((response) => response.data);
