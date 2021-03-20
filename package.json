@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint . --ext js,ts --cache --fix",
     "prettier": "prettier --list-different './**/*.{js,ts}'",
-    "test": "jest",
-    "e2e": "jest --config=e2e/jest.config.js",
+    "test": "jest src/.*\\.spec\\.ts$",
+    "e2e": "jest e2e/.*\\.spec\\.ts$",
     "full-e2e": "STACK=backend-antagning-integration yarn sls deploy -s integration && yarn e2e && yarn sls remove -s integration"
   },
   "engines": {
@@ -98,7 +98,8 @@
   "jest": {
     "clearMocks": true,
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/src",
+      "<rootDir>/e2e"
     ],
     "testEnvironment": "node",
     "preset": "ts-jest",
