@@ -8,7 +8,8 @@
     "prettier": "prettier --list-different './**/*.{js,ts}'",
     "test": "jest src/.*\\.spec\\.ts$",
     "e2e": "jest e2e/.*\\.spec\\.ts$",
-    "full-e2e": "yarn sls deploy -s integration && STACK=sample-service-integration yarn e2e && yarn sls remove -s integration"
+    "full-e2e": "yarn sls deploy -s integration && STACK=sample-service-integration yarn e2e && yarn sls remove -s integration",
+    "start": "sls offline"
   },
   "engines": {
     "node": ">=14.15.0"
